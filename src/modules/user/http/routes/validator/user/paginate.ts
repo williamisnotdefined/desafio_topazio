@@ -1,6 +1,6 @@
 import { celebrate, Segments, Joi } from 'celebrate';
 
-export const PaginateUserValidation = celebrate({
+const PaginateUserValidation = celebrate({
     [Segments.QUERY]: {
         name: Joi.string(),
         age: Joi.number(),
@@ -12,3 +12,5 @@ export const PaginateUserValidation = celebrate({
         limit: Joi.number()
     }
 });
+
+export default PaginateUserValidation;

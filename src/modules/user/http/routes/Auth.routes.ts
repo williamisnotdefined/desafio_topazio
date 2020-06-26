@@ -3,7 +3,7 @@ import Router from 'express';
 import AuthController from '../controllers/AuthController';
 // import isAuthenticated from '@middleware/isAuthenticated';
 
-import * as validator from './validator/auth';
+import * as validator from './validator/auth/auth';
 
 const routes = Router();
 

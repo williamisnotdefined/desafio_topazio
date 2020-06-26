@@ -4,8 +4,7 @@ import { Role as UserRole } from '@modules/user/schema/UserSchema';
 import UserController from '../controllers/UserController';
 import { isAuthenticated, isAcceptableRole } from '@middleware/auth';
 
-import { CreateUserValidator } from './validator/user';
-import { PaginateUserValidation } from './validator/paginateUser';
+import { CreateUserValidator, PaginateUserValidation } from './validator/user';
 
 const routes = Router();
 

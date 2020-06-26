@@ -1,6 +1,6 @@
 import { celebrate, Segments, Joi } from 'celebrate';
 
-export const CreateUserValidator = celebrate({
+const CreateUserValidator = celebrate({
     [Segments.BODY]: {
         name: Joi.string().required(),
         age: Joi.number().required(),
@@ -10,3 +10,5 @@ export const CreateUserValidator = celebrate({
         role: Joi.number().required()
     }
 });
+
+export default CreateUserValidator;

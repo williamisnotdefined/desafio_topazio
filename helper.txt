@@ -36,8 +36,8 @@ Funcionalidades Livros
 Funcionalidades User
     - Criar Usuário (o usuário pode ser criado com a role de admin ou user) - OK
     - Auth - OK
+    - Listar os usuários da biblioteca (Admin) - OK
 
-    - Listar os usuários da biblioteca (Admin)
     - Retornar dados de um usuário (User)
     - Editar
     - Excluir
