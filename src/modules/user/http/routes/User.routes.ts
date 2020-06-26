@@ -1,17 +1,22 @@
 import Router from 'express';
-// import AuthController from '../controllers/AuthController';
-import UserController from '../controllers/UserController';
-// import isAuthenticated from '@middleware/isAuthenticated';
 
-import * as validator from './validator/user';
+import { Role as UserRole } from '@modules/user/schema/UserSchema';
+import UserController from '../controllers/UserController';
+import { isAuthenticated, isAcceptableRole } from '@middleware/auth';
+
+import { CreateUserValidator } from './validator/user';
+import { PaginateUserValidation } from './validator/paginateUser';
 
 const routes = Router();
 
-routes.post('', [validator.CreateUserValidator], UserController.create);
-/*
-created only to check who is authenticated to be used by dev when coding,
-can be removed after test done
-*/
-// routes.get('/who-am-i', [isAuthenticated], AuthController.whoAmI);
+routes.post('', [CreateUserValidator], UserController.create);
+
+routes.use(isAuthenticated);
+
+routes.get(
+    '',
+    [isAcceptableRole(UserRole.ADMIN), PaginateUserValidation],
+    UserController.index
+);
 
 export default routes;

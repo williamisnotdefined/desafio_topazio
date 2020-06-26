@@ -1,4 +1,5 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, PaginateModel } from 'mongoose';
+import paginate from 'mongoose-paginate';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
@@ -56,6 +57,8 @@ const UserSchmea = new Schema(
     }
 );
 
+UserSchmea.plugin(paginate);
+
 UserSchmea.pre<IUser>('save', async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 10);
@@ -85,4 +88,7 @@ UserSchmea.methods = {
     }
 };
 
-export default model<IUser>('User', UserSchmea);
+type UserModel<T extends Document> = PaginateModel<T>;
+const UserModel: UserModel<IUser> = model<IUser>('User', UserSchmea);
+
+export default UserModel;

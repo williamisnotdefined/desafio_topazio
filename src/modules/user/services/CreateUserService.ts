@@ -7,8 +7,8 @@ const CreateUserService = async (user: ICreateUserDTO): Promise<IUser> => {
     const hasUser = await User.findOne({ email: user.email });
 
     if (!hasUser) {
-        // const newUser = await User.create(user);
-        // return newUser;
+        const newUser = await User.create(user);
+        return newUser;
     }
 
     throw new AppError('Endereço de e-mail já cadastrado.');

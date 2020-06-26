@@ -1,34 +1,21 @@
-import { Request, Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
+import { Request, Response } from 'express';
 
-import authConfig from '@config/auth';
-import AppError from '@shared/errors/AppError';
+import AuthLoginService from '@modules/user/services/AuthLoginService';
 
-interface TokenPayload {
-    iat: number;
-    exp: number;
-    sub: string;
-}
+class AuthController {
+    public async login(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const { email, password } = request.body;
 
-export default function isAuthenticated(
-    req: Request,
-    resp: Response,
-    next: NextFunction
-): NextFunction | void {
-    const authHeader = req.headers.authorization;
+        const user = await AuthLoginService({
+            email,
+            password
+        });
 
-    if (!authHeader) {
-        throw new AppError('Missing auth credentials.', 401);
-    }
-
-    const [, token] = authHeader.split(' ');
-
-    try {
-        const { sub } = verify(token, authConfig.jwt.secret) as TokenPayload; // or <TokenPayload>verify(token, authConfig.jwt.secret)
-        req.userId = sub;
-
-        return next();
-    } catch {
-        throw new AppError('Invalid JWT token.', 401);
+        return response.json(user);
     }
 }
+
+export default new AuthController();

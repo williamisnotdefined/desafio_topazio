@@ -34,12 +34,14 @@ Funcionalidades Livros
     - Adicionar Capa (Admin)
 
 Funcionalidades User
+    - Criar Usuário (o usuário pode ser criado com a role de admin ou user) - OK
+    - Auth - OK
+
     - Listar os usuários da biblioteca (Admin)
     - Retornar dados de um usuário (User)
     - Editar
     - Excluir
-    - Auth
 
 
 
-yarn add celebrate
+obs.: verificar uso de ICreateUserDTO e outras
