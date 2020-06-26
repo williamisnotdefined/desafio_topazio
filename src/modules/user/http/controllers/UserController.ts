@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 
+import IListUsersDTO from '@modules/user/dtos/IListUsersDTO';
+
 import CreateUserService from '@modules/user/services/CreateUserService';
 import ListUsersService from '@modules/user/services/ListUsersService';
-import IListUsersDTO from '@modules/user/dtos/IListUsersDTO';
+import ViewUserService from '@modules/user/services/ViewUserService';
 
 class UsersController {
     public async create(
@@ -27,17 +29,10 @@ class UsersController {
         request: Request,
         response: Response
     ): Promise<Response> {
-        const {
-            name,
-            age,
-            phone,
-            email,
-            role,
-            page = 1,
-            limit = 5
-        } = request.query;
+        const q = request.query;
+        const { name, age, phone, email, role, page = 1, limit = 5 } = q;
 
-        const filters = {
+        const filters = <IListUsersDTO>{
             name,
             age,
             phone,
@@ -45,11 +40,18 @@ class UsersController {
             role,
             page,
             limit
-        } as IListUsersDTO;
+        };
 
         const users = await ListUsersService(filters);
 
         return response.json(users);
+    }
+
+    public async view(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+        const user = await ViewUserService(id);
+
+        return response.json(user);
     }
 }
 

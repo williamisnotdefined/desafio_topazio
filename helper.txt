@@ -39,6 +39,7 @@ Funcionalidades User
     - Listar os usuários da biblioteca (Admin) - OK
 
     - Retornar dados de um usuário (User)
+
     - Editar
     - Excluir
 

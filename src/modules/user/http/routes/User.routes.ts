@@ -18,4 +18,6 @@ routes.get(
     UserController.index
 );
 
+routes.get('/:id', [isAcceptableRole(UserRole.ADMIN)], UserController.view);
+
 export default routes;
