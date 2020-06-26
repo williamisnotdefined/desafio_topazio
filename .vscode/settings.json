@@ -21,17 +21,9 @@
     },
 
     "material-icon-theme.folders.associations": {
-        "infra": "app",
-        "entities": "class",
-        "schemas": "class",
-        "typeorm": "database",
-        "repositories": "mappings",
+        "schema": "database",
         "http": "container",
-        "migrations": "tools",
         "modules": "components",
-        "implementations": "core",
-        "dtos": "typescript",
-        "fakes": "mock"
     },
     "material-icon-theme.files.associations": {
         "ormconfig.json": "database",

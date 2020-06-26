@@ -1,10 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
+import 'express-async-errors';
 import cors from 'cors';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 
-// import routes from './routes';
+import routes from '@shared/http/routes';
 import ErrorMiddleware from '@middleware/Error';
 
 class App {
@@ -20,13 +21,13 @@ class App {
         this.middleware();
         this.database();
         this.routes();
+        this.exceptionHandler();
     }
 
     private middleware(): void {
         this.express.use(express.json());
         this.express.use(cors());
         this.express.use(helmet());
-        this.exceptionHandler();
     }
 
     private database(): void {
@@ -42,7 +43,7 @@ class App {
     }
 
     private routes(): void {
-        // this.express.use('/api/v1', routes); // prefixed routes
+        this.express.use('/api/v1', routes);
     }
 
     private exceptionHandler(): void {

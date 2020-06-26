@@ -5,7 +5,7 @@ Funcionalidades para Livros:
     Salvar, Editar e Excluir.
     Salvar livro na lista de favoritos de um usuário
 Dados mínimos esperados para o Livro:
-    Título, ISBN, Categoria, Ano
+    Título, ISBN, Categoria, Ano, Cover
 
 
 Funcionalidades para o Usuário:
@@ -13,6 +13,7 @@ Funcionalidades para o Usuário:
     Retornar dados de um usuário
     Salvar, Editar e Excluir.
     Autenticar usuário
+
 Dados mínimos esperados para o Usuário:
     Nome, Idade, Telefone, Email, Senha
 
@@ -21,3 +22,24 @@ Considerações importantes
     As funcionalidades para salvar, editar e excluir devem estar protegidas, acessível apenas para usuários autenticados.
     Considere salvar os dados sensíveis do usuário de forma segura.
 
+-----
+
+Funcionalidades Livros
+    - Listar todos (User / Admin)
+    - Ver um livro (User / Admin)
+    - Editar (Admin)
+    - Excluir (Admin)
+    - Criar (Admin)
+    - Salvar na lista de favoritos (User / Admin)
+    - Adicionar Capa (Admin)
+
+Funcionalidades User
+    - Listar os usuários da biblioteca (Admin)
+    - Retornar dados de um usuário (User)
+    - Editar
+    - Excluir
+    - Auth
+
+
+
+yarn add celebrate
