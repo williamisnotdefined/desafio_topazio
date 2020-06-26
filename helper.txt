@@ -4,6 +4,8 @@ Funcionalidades para Livros:
     Retornar dados de um livro
     Salvar, Editar e Excluir.
     Salvar livro na lista de favoritos de um usuário
+Dados mínimos esperados para o Livro:
+    Título, ISBN, Categoria, Ano
 
 
 Funcionalidades para o Usuário:
@@ -11,13 +13,6 @@ Funcionalidades para o Usuário:
     Retornar dados de um usuário
     Salvar, Editar e Excluir.
     Autenticar usuário
-
-
-
-Dados mínimos esperados para o Livro:
-    Título, ISBN, Categoria, Ano
-
-
 Dados mínimos esperados para o Usuário:
     Nome, Idade, Telefone, Email, Senha
 
@@ -25,6 +20,4 @@ Dados mínimos esperados para o Usuário:
 Considerações importantes
     As funcionalidades para salvar, editar e excluir devem estar protegidas, acessível apenas para usuários autenticados.
     Considere salvar os dados sensíveis do usuário de forma segura.
-    Publique o projeto em um repositório no GitHub e nos encaminhe.
-    Qualquer funcionalidade adicional poderá ser criada.
-    Entregue em até 4 dias após o recebimento, caso precise de um tempo maior, por favor, nos avise.
+
