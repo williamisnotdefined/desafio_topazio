@@ -289,7 +289,7 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.0.4.tgz#e80ad4e8e8d2adc6c77d985f698447e8628b6010"
   integrity sha512-EwaJS7RjoXUZ2cXXKZZxZqieGtc7RbvQhUy8FwDoMQtxWVi14tFjeFCYPZAM1mBCpOpiBpyaZbb9NeHc7eGKgw==
 
-"@hapi/joi@^17.1.1":
+"@hapi/joi@17.x.x":
   version "17.1.1"
   resolved "https://registry.yarnpkg.com/@hapi/joi/-/joi-17.1.1.tgz#9cc8d7e2c2213d1e46708c6260184b447c661350"
   integrity sha512-p4DKeZAoeZW4g3u7ZeRo+vCDuSDgSvtsB/NpfjXEHTUjSeINAi/RrVOWiVQ1isaoLzMvFEhe8n5065mQq1AdQg==
@@ -1288,6 +1288,14 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+celebrate@^12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/celebrate/-/celebrate-12.1.1.tgz#73e4ef27ff44b3a6a68b5d779e6a801139a5ff15"
+  integrity sha512-d6A0KRX3sbGCbB/id6D4FAqGHwRfFb1B2e77pberUFF1awsF3P9RsLeeRYwbsrgA6Zj7J01SA07NgUyR6BeJVQ==
+  dependencies:
+    "@hapi/joi" "17.x.x"
+    escape-html "1.0.3"
+
 chalk@^2.0.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -1805,7 +1813,7 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-escape-html@~1.0.3:
+escape-html@1.0.3, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
@@ -2109,11 +2117,6 @@ express-async-errors@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/express-async-errors/-/express-async-errors-3.1.1.tgz#6053236d61d21ddef4892d6bd1d736889fc9da41"
   integrity sha512-h6aK1da4tpqWSbyCa3FxB/V6Ehd4EEB15zyQq9qe75OZBp0krinNKuH4rAY+S/U/2I36vdLAUFSjQJ+TFmODng==
-
-express-joi-validation@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/express-joi-validation/-/express-joi-validation-4.0.3.tgz#835a382780cdc207daf572098b2baad76802e7c0"
-  integrity sha512-XnEyhlllurczZDx1vLPWnaohTAQzxlvaP7ifEbvRf2zvYC5C5ZZrgFH75g0/XcL7OuaZ0XlVtB0J0E/R0O1L4A==
 
 express@^4.17.1:
   version "4.17.1"

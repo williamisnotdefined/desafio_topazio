@@ -4,6 +4,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
+import { errors } from 'celebrate';
 
 import routes from '@shared/http/routes';
 import ErrorMiddleware from '@middleware/Error';
@@ -47,6 +48,7 @@ class App {
     }
 
     private exceptionHandler(): void {
+        this.express.use(errors());
         this.express.use(ErrorMiddleware);
     }
 }
