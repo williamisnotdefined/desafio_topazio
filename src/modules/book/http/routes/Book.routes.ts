@@ -1,6 +1,8 @@
 import Router from 'express';
 import asyncHandler from 'express-async-handler';
+import multer from 'multer';
 
+import uploadConfig from '@config/upload';
 import { Role as UserRole } from '@modules/user/schema/UserSchema';
 import BookController from '../controllers/BookController';
 
@@ -12,6 +14,7 @@ import {
     EditBookValidator
 } from './validator/book';
 
+const upload = multer(uploadConfig);
 const routes = Router();
 
 routes.get('', [PaginateBookValidator], BookController.index);
@@ -25,17 +28,9 @@ routes.post(
     BookController.create
 );
 
-// routes.get(
-//     '',
-//     [isAcceptableRole(UserRole.ADMIN), PaginateUserValidation],
-//     UserController.index
-// );
-
-// routes.get('/:id', [isOwnUserOrAdmin], UserController.view);
-
 routes.put(
     '/:id',
-    [[isAcceptableRole(UserRole.ADMIN)], EditBookValidator],
+    [isAcceptableRole(UserRole.ADMIN), EditBookValidator],
     BookController.edit
 );
 
@@ -43,6 +38,12 @@ routes.delete(
     '/:id',
     [isAcceptableRole(UserRole.ADMIN)],
     BookController.delete
+);
+
+routes.post(
+    '/save-cover/:id',
+    [isAcceptableRole(UserRole.ADMIN), upload.single('cover')],
+    BookController.saveCover
 );
 
 export default routes;

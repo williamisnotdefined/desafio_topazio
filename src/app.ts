@@ -39,7 +39,8 @@ class App {
                 .connect(process.env.DB_URL, {
                     useCreateIndex: true,
                     useNewUrlParser: true,
-                    useUnifiedTopology: true
+                    useUnifiedTopology: true,
+                    useFindAndModify: false
                 })
                 .catch(console.error);
         }

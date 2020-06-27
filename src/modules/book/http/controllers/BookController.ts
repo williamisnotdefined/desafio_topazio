@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 
-import CreateBookService from '@modules/book/services/CreateBookService';
-import ListBookService from '@modules/book/services/ListBookService';
-import ViewBookService from '@modules/book/services/ViewBookService';
-import EditBookService from '@modules/book/services/EditBookService';
-import DeleteBookService from '@modules/book/services/DeleteBookService';
+import createBookService from '@modules/book/services/CreateBookService';
+import listBookService from '@modules/book/services/ListBookService';
+import viewBookService from '@modules/book/services/ViewBookService';
+import editBookService from '@modules/book/services/EditBookService';
+import deleteBookService from '@modules/book/services/DeleteBookService';
+import saveCoverBookService from '@modules/book/services/SaveCoverBookService';
 
 import IListBookDTO from '@modules/book/dtos/IListBookDTO';
 
@@ -15,7 +16,7 @@ class BookController {
     ): Promise<Response> {
         const { title, isbn, category, year } = request.body;
 
-        const book = await CreateBookService({
+        const book = await createBookService({
             title,
             isbn,
             category,
@@ -32,7 +33,7 @@ class BookController {
         const q = request.query;
         const { title, isbn, category, year, page = 1, limit = 5 } = q;
 
-        const books = await ListBookService({
+        const books = await listBookService({
             title,
             isbn,
             category,
@@ -47,7 +48,7 @@ class BookController {
     public async view(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const book = await ViewBookService(id);
+        const book = await viewBookService(id);
 
         return response.json(book);
     }
@@ -64,7 +65,7 @@ class BookController {
             year
         };
 
-        const user = await EditBookService(bookData);
+        const user = await editBookService(bookData);
 
         return response.json(user);
     }
@@ -75,9 +76,21 @@ class BookController {
     ): Promise<Response> {
         const { id } = request.params;
 
-        await DeleteBookService(id);
+        await deleteBookService(id);
 
         return response.status(204).send();
+    }
+
+    public async saveCover(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const { filename: coverFilename } = request.file;
+        const { id: bookId } = request.params;
+
+        const book = await saveCoverBookService(bookId, coverFilename);
+
+        return response.json(book);
     }
 }
 

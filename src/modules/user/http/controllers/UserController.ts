@@ -3,11 +3,11 @@ import { Request, Response } from 'express';
 import IListUsersDTO from '@modules/user/dtos/IListUsersDTO';
 import IEditUserDTO from '@modules/user/dtos/IEditUserDTO';
 
-import CreateUserService from '@modules/user/services/CreateUserService';
-import ListUsersService from '@modules/user/services/ListUsersService';
-import ViewUserService from '@modules/user/services/ViewUserService';
-import EditUserService from '@modules/user/services/EditUserService';
-import DeleteUserService from '@modules/user/services/DeleteUserService';
+import createUserService from '@modules/user/services/CreateUserService';
+import listUsersService from '@modules/user/services/ListUsersService';
+import viewUserService from '@modules/user/services/ViewUserService';
+import editUserService from '@modules/user/services/EditUserService';
+import deleteUserService from '@modules/user/services/DeleteUserService';
 
 class UserController {
     public async create(
@@ -16,7 +16,7 @@ class UserController {
     ): Promise<Response> {
         const { name, age, phone, email, password, role } = request.body;
 
-        const user = await CreateUserService({
+        const user = await createUserService({
             name,
             age,
             phone,
@@ -45,7 +45,7 @@ class UserController {
             limit
         };
 
-        const users = await ListUsersService(filters);
+        const users = await listUsersService(filters);
 
         return response.json(users);
     }
@@ -53,7 +53,7 @@ class UserController {
     public async view(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const user = await ViewUserService(id);
+        const user = await viewUserService(id);
 
         return response.json(user);
     }
@@ -70,7 +70,7 @@ class UserController {
             email
         } as IEditUserDTO;
 
-        const user = await EditUserService(userData);
+        const user = await editUserService(userData);
 
         return response.json(user);
     }
@@ -81,7 +81,7 @@ class UserController {
     ): Promise<Response> {
         const { id } = request.params;
 
-        await DeleteUserService(id);
+        await deleteUserService(id);
 
         return response.status(204).send();
     }

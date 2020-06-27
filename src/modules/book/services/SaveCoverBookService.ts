@@ -4,10 +4,13 @@ import path from 'path';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 
-import Book from '../schema/BookSchema';
+import Book, { IBook } from '../schema/BookSchema';
 
-const DeleteBookService = async (id: string): Promise<void> => {
-    const book = await Book.findByIdAndDelete(id);
+const saveCoverBookService = async (
+    id: string,
+    coverFilename: string
+): Promise<IBook> => {
+    const book = await Book.findById(id);
 
     if (!book) {
         throw new AppError('Livro não existe.', 404);
@@ -22,6 +25,11 @@ const DeleteBookService = async (id: string): Promise<void> => {
             await fs.promises.unlink(bookCoverFilePath);
         }
     }
+
+    book.cover = coverFilename;
+    await book.save();
+
+    return book;
 };
 
-export default DeleteBookService;
+export default saveCoverBookService;

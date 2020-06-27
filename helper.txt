@@ -30,8 +30,7 @@ Funcionalidades Livros
     - Ver um livro (Não precisa estar logado) - OK
     - Excluir (Admin) - OK
     - Editar (Admin) - OK
-
-    - Adicionar Capa (Admin)
+    - Adicionar Capa (Admin) - OK
 
 
 Funcionalidades User
@@ -45,6 +44,11 @@ Funcionalidades User
     - Salvar livro na lista de favoritos de um usuário (User)
     - Se um livro for deletado, deve ser removido de favorito dos users
 
-obs.: verificar uso de ICreateUserDTO e outras
+
+
+
+----
+
+- Alterar o nome das funções dos services nos arquivos de services, não deve começar com letra maiúscula
 
 
