@@ -25,7 +25,7 @@ Considerações importantes
 -----
 
 Funcionalidades Livros
-
+    - Criar (Admin) - OK
 
     - Listar todos (Não precisa estar logado)
 
@@ -33,7 +33,6 @@ Funcionalidades Livros
     - Salvar na lista de favoritos (User / Admin)
     - Editar (Admin)
     - Excluir (Admin)
-    - Criar (Admin)
     - Adicionar Capa (Admin)
 
 Funcionalidades User

@@ -11,7 +11,7 @@ import {
 
 import {
     CreateUserValidator,
-    PaginateUserValidation,
+    PaginateUserValidatior,
     EditUserValidator
 } from './validator/user';
 
@@ -23,7 +23,7 @@ routes.use(asyncHandler(isAuthenticated));
 
 routes.get(
     '',
-    [isAcceptableRole(UserRole.ADMIN), PaginateUserValidation],
+    [isAcceptableRole(UserRole.ADMIN), PaginateUserValidatior],
     UserController.index
 );
 

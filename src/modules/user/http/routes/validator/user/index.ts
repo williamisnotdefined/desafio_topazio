@@ -1,5 +1,5 @@
 import CreateUserValidator from './CreateUserValidator';
 import EditUserValidator from './EditUserValidator';
-import PaginateUserValidation from './PaginateUserValidation';
+import PaginateUserValidatior from './PaginateUserValidatior';
 
-export { CreateUserValidator, PaginateUserValidation, EditUserValidator };
+export { CreateUserValidator, PaginateUserValidatior, EditUserValidator };

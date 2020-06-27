@@ -1,3 +1,4 @@
 import CreateBookValidator from './CreateBookValidator';
+import PaginateBookValidator from './PaginateBookValidator';
 
-export { CreateBookValidator };
+export { CreateBookValidator, PaginateBookValidator };

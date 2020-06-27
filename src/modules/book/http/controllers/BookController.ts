@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 
 import CreateBookService from '@modules/book/services/CreateBookService';
+import ListBookService from '@modules/book/services/ListBookService';
+import IListBookDTO from '@modules/book/dtos/IListBookDTO';
 
 class BookController {
     public async create(
@@ -9,37 +11,34 @@ class BookController {
     ): Promise<Response> {
         const { title, isbn, category, year } = request.body;
 
-        const user = await CreateBookService({
+        const book = await CreateBookService({
             title,
             isbn,
             category,
             year
         });
 
-        return response.json(user);
+        return response.json(book);
     }
 
-    // public async index(
-    //     request: Request,
-    //     response: Response
-    // ): Promise<Response> {
-    //     const q = request.query;
-    //     const { name, age, phone, email, role, page = 1, limit = 5 } = q;
+    public async index(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const q = request.query;
+        const { title, isbn, category, year, page = 1, limit = 5 } = q;
 
-    //     const filters = <IListUsersDTO>{
-    //         name,
-    //         age,
-    //         phone,
-    //         email,
-    //         role,
-    //         page,
-    //         limit
-    //     };
+        const books = await ListBookService({
+            title,
+            isbn,
+            category,
+            year,
+            page,
+            limit
+        } as IListBookDTO);
 
-    //     const users = await ListUsersService(filters);
-
-    //     return response.json(users);
-    // }
+        return response.json(books);
+    }
 
     // public async view(request: Request, response: Response): Promise<Response> {
     //     const { id } = request.params;

@@ -6,11 +6,11 @@ import BookController from '../controllers/BookController';
 
 import { isAuthenticated, isAcceptableRole } from '@middleware/auth';
 
-import { CreateBookValidator } from './validator/book';
+import { CreateBookValidator, PaginateBookValidator } from './validator/book';
 
 const routes = Router();
 
-// routes.post('', [CreateUserValidator], UserController.create);
+routes.get('', [PaginateBookValidator], BookController.index);
 
 routes.use(asyncHandler(isAuthenticated));
 
