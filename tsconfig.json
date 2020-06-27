@@ -12,7 +12,8 @@
           "@modules/*": ["modules/*"],
           "@config/*": ["config/*"],
           "@shared/*": ["shared/*"],
-          "@middleware/*": ["middleware/*"]
+          "@middleware/*": ["middleware/*"],
+          "@utils/*": ["utils/*"]
       },
 
       "esModuleInterop": true,

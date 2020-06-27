@@ -26,7 +26,7 @@ const authLoginService = async ({
         throw new AppError('Credenciais inválidas.', 401);
     }
 
-    const correctPassword = compare(user.password, String(password));
+    const correctPassword = await compare(String(password), user.password);
 
     if (!correctPassword) {
         throw new AppError('Credenciais inválidas.', 401);

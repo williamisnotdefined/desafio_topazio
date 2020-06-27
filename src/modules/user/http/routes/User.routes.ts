@@ -1,5 +1,6 @@
 import Router from 'express';
 import asyncHandler from 'express-async-handler';
+import { Segments } from 'celebrate';
 
 import { Role as UserRole } from '@modules/user/schema/UserSchema';
 import UserController from '../controllers/UserController';
@@ -15,6 +16,8 @@ import {
     EditUserValidator
 } from './validator/user';
 
+import objectIdValidator from '@utils/objectIdValidator';
+
 const routes = Router();
 
 routes.post('', [CreateUserValidator], UserController.create);
@@ -27,11 +30,23 @@ routes.get(
     UserController.index
 );
 
-routes.get('/:id', [isOwnUserOrAdmin], UserController.view);
+routes.get(
+    '/:id',
+    [objectIdValidator(Segments.PARAMS), isOwnUserOrAdmin],
+    UserController.view
+);
 
-routes.put('/:id', [isOwnUserOrAdmin, EditUserValidator], UserController.edit);
+routes.put(
+    '/:id',
+    [objectIdValidator(Segments.PARAMS), isOwnUserOrAdmin, EditUserValidator],
+    UserController.edit
+);
 
-routes.delete('/:id', [isOwnUserOrAdmin], UserController.delete);
+routes.delete(
+    '/:id',
+    [objectIdValidator(Segments.PARAMS), isOwnUserOrAdmin],
+    UserController.delete
+);
 
 routes.post('/favorite-book/:id', UserController.favoriteBook);
 
