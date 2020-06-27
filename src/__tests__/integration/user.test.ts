@@ -17,6 +17,18 @@ const fakeUser = {
     role: 0
 };
 
+const credentials = {
+    email: fakeUser.email,
+    password: fakeUser.password
+};
+
+const editedUser = {
+    name: 'edited name',
+    age: 1,
+    phone: '51-989495739',
+    email: 'edited@mail.com'
+};
+
 const api = request(app);
 
 describe('Users', () => {
@@ -46,11 +58,6 @@ describe('Users', () => {
     });
 
     it('should be able to user delete your own account', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         const user = <IFakeUser>await factory.create('User', credentials);
 
         const authenticated = await api.post('/api/v1/auth').send(credentials);
@@ -63,11 +70,6 @@ describe('Users', () => {
     });
 
     it('should be able to admin delete an another user account', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         const user = <IFakeUser>await factory.create('User');
 
         await factory.create('User', { ...credentials, role: Role.ADMIN });
@@ -91,11 +93,6 @@ describe('Users', () => {
     });
 
     it('should not be  able to a not admin user delete another user account', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         const user = <IFakeUser>await factory.create('User');
 
         await factory.create('User', { ...credentials });
@@ -113,11 +110,6 @@ describe('Users', () => {
     });
 
     it('should not be able to delete an account that doesnt exists', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         await factory.create('User', { ...credentials, role: Role.ADMIN });
 
         const authenticated = await api.post('/api/v1/auth').send(credentials);
@@ -131,22 +123,10 @@ describe('Users', () => {
     });
 
     it('should be able to edit an user', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         const user = <IFakeUser>(
             await factory.create('User', { ...credentials })
         );
         const authenticated = await api.post('/api/v1/auth').send(credentials);
-
-        const editedUser = {
-            name: 'edited name',
-            age: 1,
-            phone: '51-989495739',
-            email: 'edited@mail.com'
-        };
 
         const { body, status } = await api
             .put(`/api/v1/user/${user._id}`)
@@ -161,23 +141,11 @@ describe('Users', () => {
     });
 
     it('should not be able to edit an user that not exists', async () => {
-        const credentials = {
-            email: fakeUser.email,
-            password: '123456'
-        };
-
         await factory.create('User', { ...credentials, role: Role.ADMIN });
 
         const authenticated = await api.post('/api/v1/auth').send(credentials);
 
         const user = <IFakeUser>await factory.create('User');
-
-        const editedUser = {
-            name: 'edited name',
-            age: 1,
-            phone: '51-989495739',
-            email: 'edited@mail.com'
-        };
 
         await api
             .delete(`/api/v1/user/${user._id}`)
@@ -186,6 +154,86 @@ describe('Users', () => {
         const { body, status } = await api
             .put(`/api/v1/user/${user._id}`)
             .send(editedUser)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(status).toBe(404);
+        expect(body.message).toBe('Usuário não existe.');
+    });
+
+    it('should be able to list users to admin', async () => {
+        await factory.create('User', { ...credentials, role: Role.ADMIN });
+
+        await factory.create('User', {
+            name: 'William',
+            email: 'mail1@mail.com'
+        });
+        await factory.create('User', { age: 10, email: 'mail2@mail.com' });
+        await factory.create('User', {
+            phone: '51-989495739',
+            email: 'mail3@mail.com'
+        });
+
+        const authenticated = await api.post('/api/v1/auth').send(credentials);
+
+        const { body: bodyName, status: statusName } = await api
+            .get(`/api/v1/user?name=william`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(statusName).toBe(200);
+        expect(bodyName).toHaveProperty('docs');
+        expect(bodyName.docs.length).toBeGreaterThanOrEqual(1);
+
+        const { body: bodyAge, status: statusAge } = await api
+            .get(`/api/v1/user?age=10`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(statusAge).toBe(200);
+        expect(bodyAge).toHaveProperty('docs');
+        expect(bodyAge.docs.length).toBeGreaterThanOrEqual(1);
+
+        const {
+            body: bodyPhoneMailRole,
+            status: statusPhoneMailRole
+        } = await api
+            .get(`/api/v1/user?phone=51-989495739&email=mail3@mail.com&role=0`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(statusPhoneMailRole).toBe(200);
+        expect(bodyPhoneMailRole).toHaveProperty('docs');
+        expect(bodyPhoneMailRole.docs.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('should be able to view an user', async () => {
+        const user = <IFakeUser>(
+            await factory.create('User', { ...credentials })
+        );
+
+        const authenticated = await api.post('/api/v1/auth').send(credentials);
+
+        const { body, status } = await api
+            .get(`/api/v1/user/${user._id}`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(status).toBe(200);
+        expect(body.name).toBe(user.name);
+        expect(body.age).toBe(user.age);
+        expect(body.email).toBe(user.email);
+        expect(body.phone).toBe(user.phone);
+        expect(body.role).toBe(user.role);
+        expect(body.favorites.length).toBe(user?.favorites?.length || 0);
+    });
+
+    it('should not be able to view an user that doest exist', async () => {
+        await factory.create('User', { ...credentials, role: Role.ADMIN });
+        const user = <IFakeUser>await factory.create('User');
+        const authenticated = await api.post('/api/v1/auth').send(credentials);
+
+        await api
+            .delete(`/api/v1/user/${user._id}`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        const { body, status } = await api
+            .get(`/api/v1/user/${user._id}`)
             .set('Authorization', `Bearer ${authenticated.body.token}`);
 
         expect(status).toBe(404);
