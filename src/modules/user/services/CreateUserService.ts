@@ -6,12 +6,12 @@ import User, { IUser } from '../schema/UserSchema';
 const createUserService = async (user: ICreateUserDTO): Promise<IUser> => {
     const hasUser = await User.findOne({ email: user.email });
 
-    if (!hasUser) {
-        const newUser = await User.create(user);
-        return newUser;
+    if (hasUser) {
+        throw new AppError('Endereço de e-mail já cadastrado.');
     }
 
-    throw new AppError('Endereço de e-mail já cadastrado.');
+    const newUser = await User.create(user);
+    return newUser;
 };
 
 export default createUserService;

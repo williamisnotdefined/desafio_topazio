@@ -17,7 +17,7 @@ export interface IUser extends Document {
     phone: string;
     email: string;
     password: string;
-    favorites: IBook[];
+    favorites?: IBook[];
     role: Role;
 
     checkIfUnencryptedPasswordIsValid(pwd: string): boolean;
