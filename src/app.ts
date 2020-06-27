@@ -12,12 +12,10 @@ import ErrorMiddleware from '@middleware/Error';
 
 class App {
     express: express.Application;
-    isDevEnv: boolean;
     isTestEnv: boolean;
 
     constructor() {
         this.express = express();
-        this.isDevEnv = process.env.NODE_ENV === 'development';
         this.isTestEnv = process.env.NODE_ENV === 'test';
 
         this.middleware();
