@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import mongoose from 'mongoose';
 import { errors } from 'celebrate';
 
+import uploadConfig from '@config/upload';
 import routes from '@shared/http/routes';
 import ErrorMiddleware from '@middleware/Error';
 
@@ -29,6 +30,7 @@ class App {
         this.express.use(express.json());
         this.express.use(cors());
         this.express.use(helmet());
+        this.express.use('/files', express.static(uploadConfig.directory));
     }
 
     private database(): void {
