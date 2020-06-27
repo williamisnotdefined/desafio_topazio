@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import authConfig from '@config/auth';
+import { IBook } from '@modules/book/schema/BookSchema';
 
 export enum Role {
     USER = 0,
@@ -16,6 +17,7 @@ export interface IUser extends Document {
     phone: string;
     email: string;
     password: string;
+    favorites: IBook[];
     role: Role;
 
     checkIfUnencryptedPasswordIsValid(pwd: string): boolean;

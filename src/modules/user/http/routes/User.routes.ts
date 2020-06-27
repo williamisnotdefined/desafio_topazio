@@ -33,4 +33,6 @@ routes.put('/:id', [isOwnUserOrAdmin, EditUserValidator], UserController.edit);
 
 routes.delete('/:id', [isOwnUserOrAdmin], UserController.delete);
 
+routes.post('/favorite-book/:id', UserController.favoriteBook);
+
 export default routes;

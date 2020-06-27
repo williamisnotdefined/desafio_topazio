@@ -23,7 +23,6 @@ Considerações importantes
     Considere salvar os dados sensíveis do usuário de forma segura.
 
 -----
-
 Funcionalidades Livros
     - Criar (Admin) - OK
     - Listar todos (Não precisa estar logado) - OK
@@ -42,11 +41,8 @@ Funcionalidades User
     - Excluir (Admin / Own User) - OK
 
     - Salvar livro na lista de favoritos de um usuário (User)
+
     - Se um livro for deletado, deve ser removido de favorito dos users
-
-
-
-
 ----
 
 - Alterar o nome das funções dos services nos arquivos de services, não deve começar com letra maiúscula

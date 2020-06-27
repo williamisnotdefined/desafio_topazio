@@ -8,6 +8,7 @@ import listUsersService from '@modules/user/services/ListUsersService';
 import viewUserService from '@modules/user/services/ViewUserService';
 import editUserService from '@modules/user/services/EditUserService';
 import deleteUserService from '@modules/user/services/DeleteUserService';
+import addFavoriteBookUserService from '@modules/user/services/AddFavoriteBookUserService';
 
 class UserController {
     public async create(
@@ -84,6 +85,18 @@ class UserController {
         await deleteUserService(id);
 
         return response.status(204).send();
+    }
+
+    public async favoriteBook(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const { user } = request;
+        const { id: bookId } = request.params;
+
+        const updatedUser = await addFavoriteBookUserService(bookId, user._id);
+
+        return response.json({ user: updatedUser });
     }
 }
 
