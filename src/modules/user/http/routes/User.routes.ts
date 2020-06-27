@@ -31,4 +31,6 @@ routes.get('/:id', [isOwnUserOrAdmin], UserController.view);
 
 routes.put('/:id', [isOwnUserOrAdmin, EditUserValidator], UserController.edit);
 
+routes.delete('/:id', [isOwnUserOrAdmin], UserController.delete);
+
 export default routes;

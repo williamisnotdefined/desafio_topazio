@@ -7,6 +7,7 @@ import CreateUserService from '@modules/user/services/CreateUserService';
 import ListUsersService from '@modules/user/services/ListUsersService';
 import ViewUserService from '@modules/user/services/ViewUserService';
 import EditUserService from '@modules/user/services/EditUserService';
+import DeleteUserService from '@modules/user/services/DeleteUserService';
 
 class UsersController {
     public async create(
@@ -72,6 +73,17 @@ class UsersController {
         const user = await EditUserService(userData);
 
         return response.json(user);
+    }
+
+    public async delete(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const { id } = request.params;
+
+        await DeleteUserService(id);
+
+        return response.status(204).send();
     }
 }
 
