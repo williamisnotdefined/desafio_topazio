@@ -1,26 +1,10 @@
+Readme explicando:
+- melhor visualização vscode com extensão Material Icon Theme
+- mongo precisa estar instalado
 
-Funcionalidades para Livros:
-    Listar todos livros disponíveis
-    Retornar dados de um livro
-    Salvar, Editar e Excluir.
-    Salvar livro na lista de favoritos de um usuário
-Dados mínimos esperados para o Livro:
-    Título, ISBN, Categoria, Ano, Cover
+- o uso do DDD
+- single responsability principle
 
-
-Funcionalidades para o Usuário:
-    Listar os usuários da biblioteca.
-    Retornar dados de um usuário
-    Salvar, Editar e Excluir.
-    Autenticar usuário
-
-Dados mínimos esperados para o Usuário:
-    Nome, Idade, Telefone, Email, Senha
-
-
-Considerações importantes
-    As funcionalidades para salvar, editar e excluir devem estar protegidas, acessível apenas para usuários autenticados.
-    Considere salvar os dados sensíveis do usuário de forma segura.
 
 -----
 Funcionalidades Livros
@@ -41,9 +25,5 @@ Funcionalidades User
     - Excluir (Admin / Own User) - OK
     - Salvar livro na lista de favoritos de um usuário (User) - OK
 
-
-----
-
-- Alterar o nome das funções dos services nos arquivos de services, não deve começar com letra maiúscula
 
 

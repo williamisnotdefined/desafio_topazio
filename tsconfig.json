@@ -12,7 +12,7 @@
           "@modules/*": ["modules/*"],
           "@config/*": ["config/*"],
           "@shared/*": ["shared/*"],
-          "@middleware/*": ["middleware/*"],
+          "@middleware/*": ["middleware/*"]
       },
 
       "esModuleInterop": true,
