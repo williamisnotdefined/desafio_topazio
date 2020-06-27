@@ -45,6 +45,7 @@ const UserSchmea = new Schema(
             type: String,
             required: true
         },
+        favorites: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
         role: {
             type: Number,
             enum: [Role.ADMIN, Role.USER],

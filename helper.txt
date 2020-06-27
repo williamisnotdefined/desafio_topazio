@@ -25,7 +25,10 @@ Considerações importantes
 -----
 
 Funcionalidades Livros
+
+
     - Listar todos (Não precisa estar logado)
+
     - Ver um livro (Não precisa estar logado)
     - Salvar na lista de favoritos (User / Admin)
     - Editar (Admin)
@@ -41,7 +44,7 @@ Funcionalidades User
     - Editar (Admin / Own User) - OK
     - Excluir (Admin / Own User) - OK
 
-
+    - Salvar livro na lista de favoritos de um usuário (User)
 
 obs.: verificar uso de ICreateUserDTO e outras
 
