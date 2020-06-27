@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import User, { IUser } from '../schema/UserSchema';
 import IEditUserDTO from '@modules/user/dtos/IEditUserDTO';
 
-const EditUserService = async (userData: IEditUserDTO): Promise<IUser> => {
+const editUserService = async (userData: IEditUserDTO): Promise<IUser> => {
     const { id, name, age, phone, email } = userData;
 
     const user = await User.findByIdAndUpdate(
@@ -19,4 +19,4 @@ const EditUserService = async (userData: IEditUserDTO): Promise<IUser> => {
     return user;
 };
 
-export default EditUserService;
+export default editUserService;

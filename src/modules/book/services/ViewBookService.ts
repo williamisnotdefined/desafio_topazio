@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import Book, { IBook } from '../schema/BookSchema';
 
-const ViewBookService = async (id: string): Promise<IBook> => {
+const viewBookService = async (id: string): Promise<IBook> => {
     const book = await Book.findById(id);
 
     if (!book) {
@@ -12,4 +12,4 @@ const ViewBookService = async (id: string): Promise<IBook> => {
     return book;
 };
 
-export default ViewBookService;
+export default viewBookService;

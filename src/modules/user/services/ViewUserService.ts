@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import User, { IUser } from '../schema/UserSchema';
 
-const ViewUserService = async (id: string): Promise<IUser> => {
+const viewUserService = async (id: string): Promise<IUser> => {
     const user = await User.findById(id).populate('favorites');
 
     if (!user) {
@@ -12,4 +12,4 @@ const ViewUserService = async (id: string): Promise<IUser> => {
     return user;
 };
 
-export default ViewUserService;
+export default viewUserService;

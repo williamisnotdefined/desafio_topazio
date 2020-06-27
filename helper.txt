@@ -39,10 +39,9 @@ Funcionalidades User
     - Retornar dados de um usuário (User que está logado pode ver os seus próprios dados / Admin pode editar qualquer um) - OK
     - Editar (Admin / Own User) - OK
     - Excluir (Admin / Own User) - OK
+    - Salvar livro na lista de favoritos de um usuário (User) - OK
 
-    - Salvar livro na lista de favoritos de um usuário (User)
 
-    - Se um livro for deletado, deve ser removido de favorito dos users
 ----
 
 - Alterar o nome das funções dos services nos arquivos de services, não deve começar com letra maiúscula

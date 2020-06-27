@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import User, { IUser } from '../schema/UserSchema';
 import Book from '@modules/book/schema/BookSchema';
 
-const AddFavoriteBookUserService = async (
+const addFavoriteBookUserService = async (
     bookId: string,
     userId: string
 ): Promise<IUser> => {
@@ -27,4 +27,4 @@ const AddFavoriteBookUserService = async (
     return user;
 };
 
-export default AddFavoriteBookUserService;
+export default addFavoriteBookUserService;

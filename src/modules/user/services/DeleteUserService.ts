@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import User from '../schema/UserSchema';
 
-const DeleteUserService = async (id: string): Promise<void> => {
+const deleteUserService = async (id: string): Promise<void> => {
     const user = await User.findByIdAndDelete(id);
 
     if (!user) {
@@ -10,4 +10,4 @@ const DeleteUserService = async (id: string): Promise<void> => {
     }
 };
 
-export default DeleteUserService;
+export default deleteUserService;

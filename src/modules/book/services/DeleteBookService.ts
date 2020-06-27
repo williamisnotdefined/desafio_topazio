@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 
 import Book from '../schema/BookSchema';
 
-const DeleteBookService = async (id: string): Promise<void> => {
+const deleteBookService = async (id: string): Promise<void> => {
     const book = await Book.findByIdAndDelete(id);
 
     if (!book) {
@@ -24,4 +24,4 @@ const DeleteBookService = async (id: string): Promise<void> => {
     }
 };
 
-export default DeleteBookService;
+export default deleteBookService;

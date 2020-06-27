@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import ICreateUserDTO from '@modules/user/dtos/ICreateUserDTO';
 import User, { IUser } from '../schema/UserSchema';
 
-const CreateUserService = async (user: ICreateUserDTO): Promise<IUser> => {
+const createUserService = async (user: ICreateUserDTO): Promise<IUser> => {
     const hasUser = await User.findOne({ email: user.email });
 
     if (!hasUser) {
@@ -14,4 +14,4 @@ const CreateUserService = async (user: ICreateUserDTO): Promise<IUser> => {
     throw new AppError('Endereço de e-mail já cadastrado.');
 };
 
-export default CreateUserService;
+export default createUserService;

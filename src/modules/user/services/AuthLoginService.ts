@@ -16,7 +16,7 @@ interface IResponseDTO {
     token: string;
 }
 
-const AuthLoginService = async ({
+const authLoginService = async ({
     email,
     password
 }: IRequestDTO): Promise<IResponseDTO> => {
@@ -42,4 +42,4 @@ const AuthLoginService = async ({
     return { user, token };
 };
 
-export default AuthLoginService;
+export default authLoginService;

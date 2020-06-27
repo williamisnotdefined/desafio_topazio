@@ -3,7 +3,7 @@ import AppError from '@shared/errors/AppError';
 import Book, { IBook } from '../schema/BookSchema';
 import IEditBookDTO from '@modules/book/dtos/IEditBookDTO';
 
-const EditUserService = async (bookData: IEditBookDTO): Promise<IBook> => {
+const editUserService = async (bookData: IEditBookDTO): Promise<IBook> => {
     const { id, title, isbn, category, year } = bookData;
 
     const user = await Book.findByIdAndUpdate(
@@ -19,4 +19,4 @@ const EditUserService = async (bookData: IEditBookDTO): Promise<IBook> => {
     return user;
 };
 
-export default EditUserService;
+export default editUserService;
