@@ -9,7 +9,7 @@ import ViewUserService from '@modules/user/services/ViewUserService';
 import EditUserService from '@modules/user/services/EditUserService';
 import DeleteUserService from '@modules/user/services/DeleteUserService';
 
-class UsersController {
+class UserController {
     public async create(
         request: Request,
         response: Response
@@ -87,4 +87,4 @@ class UsersController {
     }
 }
 
-export default new UsersController();
+export default new UserController();

@@ -6,7 +6,7 @@ export interface IBook extends Document {
     isbn: string;
     category: string;
     year: number;
-    cover: string;
+    cover?: string;
 }
 
 const BookSchmea = new Schema(
@@ -23,6 +23,10 @@ const BookSchmea = new Schema(
         },
         category: {
             type: String,
+            required: true
+        },
+        year: {
+            type: Number,
             required: true
         },
         cover: {
