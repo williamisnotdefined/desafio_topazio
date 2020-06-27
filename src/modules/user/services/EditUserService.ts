@@ -13,7 +13,7 @@ const EditUserService = async (userData: IEditUserDTO): Promise<IUser> => {
     );
 
     if (!user) {
-        throw new AppError('Usuário não existe.');
+        throw new AppError('Usuário não existe.', 404);
     }
 
     return user;

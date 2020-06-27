@@ -6,7 +6,7 @@ const ViewUserService = async (id: string): Promise<IUser> => {
     const user = await User.findById(id);
 
     if (!user) {
-        throw new AppError('Usuário não existe.');
+        throw new AppError('Usuário não existe.', 404);
     }
 
     return user;

@@ -6,7 +6,7 @@ const DeleteUserService = async (id: string): Promise<void> => {
     const user = await User.findByIdAndDelete(id);
 
     if (!user) {
-        throw new AppError('Usuário não existe.');
+        throw new AppError('Usuário não existe.', 404);
     }
 };
 

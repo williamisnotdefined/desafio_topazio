@@ -19,7 +19,7 @@ export default async function isAuthenticated(
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        throw new AppError('Missing auth credentials.', 401);
+        throw new AppError('É necessário fazer login.', 401);
     }
 
     const [, token] = authHeader.split(' ');
@@ -32,7 +32,7 @@ export default async function isAuthenticated(
     const user = <IUser>await User.findById(userId);
 
     if (!user) {
-        throw new AppError('Invalid JWT token.', 401);
+        throw new AppError('Token inválido.', 401);
     }
 
     req.user = user as IUser;

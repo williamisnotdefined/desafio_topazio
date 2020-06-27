@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 
 import CreateBookService from '@modules/book/services/CreateBookService';
 import ListBookService from '@modules/book/services/ListBookService';
+import ViewBookService from '@modules/book/services/ViewBookService';
+import EditBookService from '@modules/book/services/EditBookService';
+import DeleteBookService from '@modules/book/services/DeleteBookService';
+
 import IListBookDTO from '@modules/book/dtos/IListBookDTO';
 
 class BookController {
@@ -40,41 +44,41 @@ class BookController {
         return response.json(books);
     }
 
-    // public async view(request: Request, response: Response): Promise<Response> {
-    //     const { id } = request.params;
+    public async view(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
 
-    //     const user = await ViewUserService(id);
+        const book = await ViewBookService(id);
 
-    //     return response.json(user);
-    // }
+        return response.json(book);
+    }
 
-    // public async edit(request: Request, response: Response): Promise<Response> {
-    //     const { id } = request.params;
-    //     const { name, age, phone, email } = request.body;
+    public async edit(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+        const { title, isbn, category, year } = request.body;
 
-    //     const userData = {
-    //         id,
-    //         name,
-    //         age,
-    //         phone,
-    //         email
-    //     } as IEditUserDTO;
+        const bookData = {
+            id,
+            title,
+            isbn,
+            category,
+            year
+        };
 
-    //     const user = await EditUserService(userData);
+        const user = await EditBookService(bookData);
 
-    //     return response.json(user);
-    // }
+        return response.json(user);
+    }
 
-    // public async delete(
-    //     request: Request,
-    //     response: Response
-    // ): Promise<Response> {
-    //     const { id } = request.params;
+    public async delete(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        const { id } = request.params;
 
-    //     await DeleteUserService(id);
+        await DeleteBookService(id);
 
-    //     return response.status(204).send();
-    // }
+        return response.status(204).send();
+    }
 }
 
 export default new BookController();

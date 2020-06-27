@@ -6,11 +6,16 @@ import BookController from '../controllers/BookController';
 
 import { isAuthenticated, isAcceptableRole } from '@middleware/auth';
 
-import { CreateBookValidator, PaginateBookValidator } from './validator/book';
+import {
+    CreateBookValidator,
+    PaginateBookValidator,
+    EditBookValidator
+} from './validator/book';
 
 const routes = Router();
 
 routes.get('', [PaginateBookValidator], BookController.index);
+routes.get('/:id', [PaginateBookValidator], BookController.view);
 
 routes.use(asyncHandler(isAuthenticated));
 
@@ -28,8 +33,16 @@ routes.post(
 
 // routes.get('/:id', [isOwnUserOrAdmin], UserController.view);
 
-// routes.put('/:id', [isOwnUserOrAdmin, EditUserValidator], UserController.edit);
+routes.put(
+    '/:id',
+    [[isAcceptableRole(UserRole.ADMIN)], EditBookValidator],
+    BookController.edit
+);
 
-// routes.delete('/:id', [isOwnUserOrAdmin], UserController.delete);
+routes.delete(
+    '/:id',
+    [isAcceptableRole(UserRole.ADMIN)],
+    BookController.delete
+);
 
 export default routes;

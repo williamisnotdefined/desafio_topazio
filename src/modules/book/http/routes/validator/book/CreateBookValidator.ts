@@ -1,6 +1,6 @@
 import { celebrate, Segments, Joi } from 'celebrate';
 
-const CreateUserValidator = celebrate({
+const CreateBookValidator = celebrate({
     [Segments.BODY]: {
         title: Joi.string().required(),
         isbn: Joi.string().max(13, 'utf8').min(10, 'utf8').required(),
@@ -9,4 +9,4 @@ const CreateUserValidator = celebrate({
     }
 });
 
-export default CreateUserValidator;
+export default CreateBookValidator;
