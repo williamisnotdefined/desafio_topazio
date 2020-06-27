@@ -1,23 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 
 import AppError from '@shared/errors/AppError';
-import User from '@modules/user/schema/UserSchema';
 
 const isAcceptableRole = (minimunRole: number) => {
-    return async (
+    return (
         req: Request,
         res: Response,
         next: NextFunction
-    ): Promise<void> => {
-        const { userId } = req;
+    ): NextFunction | void => {
+        const { user } = req;
 
-        if (!userId) {
+        if (!user) {
             throw new AppError('É necessário fazer login.', 401);
         }
 
-        const user = await User.findOne({ _id: userId });
-
-        if (user && user.role >= minimunRole) {
+        if (user.role >= minimunRole) {
             next();
         } else {
             throw new AppError(

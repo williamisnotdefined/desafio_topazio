@@ -25,24 +25,24 @@ Considerações importantes
 -----
 
 Funcionalidades Livros
-    - Listar todos (User / Admin)
-    - Ver um livro (User / Admin)
+    - Listar todos (Não precisa estar logado)
+    - Ver um livro (Não precisa estar logado)
+    - Salvar na lista de favoritos (User / Admin)
     - Editar (Admin)
     - Excluir (Admin)
     - Criar (Admin)
-    - Salvar na lista de favoritos (User / Admin)
     - Adicionar Capa (Admin)
 
 Funcionalidades User
-    - Criar Usuário (o usuário pode ser criado com a role de admin ou user) - OK
+    - Criar Usuário (o usuário pode ser criado com a role de admin ou user e qualquer um pode criar) - OK
     - Auth - OK
     - Listar os usuários da biblioteca (Admin) - OK
-
-    - Retornar dados de um usuário (User)
-
-    - Editar
-    - Excluir
+    - Retornar dados de um usuário (User que está logado pode ver os seus próprios dados / Admin pode editar qualquer um) - OK
+    - Editar (Admin / Own User) - OK
+    - Excluir (Admin / Own User) - OK
 
 
 
 obs.: verificar uso de ICreateUserDTO e outras
+
+

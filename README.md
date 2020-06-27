@@ -8,10 +8,3 @@ modulos baseado em DDD (Domain Driven Design)
 -> testes
 -> coverage
 
------- Inicio ------
--> folder structure - OK
-
--> routes validation
--> Error handler - OK
--> middlewares
--> services

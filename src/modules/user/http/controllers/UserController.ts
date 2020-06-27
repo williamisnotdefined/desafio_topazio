@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
 
 import IListUsersDTO from '@modules/user/dtos/IListUsersDTO';
+import IEditUserDTO from '@modules/user/dtos/IEditUserDTO';
 
 import CreateUserService from '@modules/user/services/CreateUserService';
 import ListUsersService from '@modules/user/services/ListUsersService';
 import ViewUserService from '@modules/user/services/ViewUserService';
+import EditUserService from '@modules/user/services/EditUserService';
 
 class UsersController {
     public async create(
@@ -49,7 +51,25 @@ class UsersController {
 
     public async view(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
+
         const user = await ViewUserService(id);
+
+        return response.json(user);
+    }
+
+    public async edit(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+        const { name, age, phone, email } = request.body;
+
+        const userData = {
+            id,
+            name,
+            age,
+            phone,
+            email
+        } as IEditUserDTO;
+
+        const user = await EditUserService(userData);
 
         return response.json(user);
     }

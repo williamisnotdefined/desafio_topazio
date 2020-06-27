@@ -11,7 +11,7 @@ interface PaginationQuery {
     role?: number;
 }
 
-const CreateUserService = async (
+const ListUserServices = async (
     filters: IListUsersDTO
 ): Promise<PaginateResult<IUser>> => {
     const { name, age, phone, email, role, page, limit } = filters;
@@ -38,4 +38,4 @@ const CreateUserService = async (
     return users;
 };
 
-export default CreateUserService;
+export default ListUserServices;

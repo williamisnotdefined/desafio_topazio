@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import User, { IUser } from '../schema/UserSchema';
 
-const CreateUserService = async (id: string): Promise<IUser> => {
+const ViewUserService = async (id: string): Promise<IUser> => {
     const user = await User.findById(id);
 
     if (!user) {
@@ -12,4 +12,4 @@ const CreateUserService = async (id: string): Promise<IUser> => {
     return user;
 };
 
-export default CreateUserService;
+export default ViewUserService;

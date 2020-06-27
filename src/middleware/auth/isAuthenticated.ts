@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import User, { IUser } from '@modules/user/schema/UserSchema';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 
@@ -10,11 +11,11 @@ interface TokenPayload {
     sub: string;
 }
 
-export default function isAuthenticated(
+export default async function isAuthenticated(
     req: Request,
     resp: Response,
     next: NextFunction
-): NextFunction | void {
+): Promise<NextFunction | void> {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -23,12 +24,18 @@ export default function isAuthenticated(
 
     const [, token] = authHeader.split(' ');
 
-    try {
-        const { sub } = verify(token, authConfig.jwt.secret) as TokenPayload;
-        req.userId = sub;
+    const { sub: userId } = verify(
+        token,
+        authConfig.jwt.secret
+    ) as TokenPayload;
 
-        return next();
-    } catch {
+    const user = <IUser>await User.findById(userId);
+
+    if (!user) {
         throw new AppError('Invalid JWT token.', 401);
     }
+
+    req.user = user as IUser;
+
+    return next();
 }
