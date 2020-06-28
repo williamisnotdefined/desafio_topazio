@@ -13,16 +13,11 @@ const addFavoriteBookUserService = async (
         throw new AppError('Livro não existe.', 404);
     }
 
-    const user = await User.findByIdAndUpdate(
+    const user = (await User.findByIdAndUpdate(
         userId,
-
         { $addToSet: { favorites: book._id } },
         { new: true }
-    );
-
-    if (!user) {
-        throw new AppError('Usuário não existe.', 404);
-    }
+    )) as IUser;
 
     return user;
 };

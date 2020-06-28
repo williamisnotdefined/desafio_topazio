@@ -6,7 +6,7 @@ import app from '../../app';
 import { connect, clearDatabase, closeDatabase } from '../utils/mockMongo';
 import factory from '../utils/factories';
 
-import { IFakeUser } from '../utils/interfaces';
+import { IFakeUser, IFakeBook } from '../utils/interfaces';
 
 const fakeUser = {
     name: 'Fake User',
@@ -238,5 +238,38 @@ describe('Users', () => {
 
         expect(status).toBe(404);
         expect(body.message).toBe('Usuário não existe.');
+    });
+
+    it('should be able to user add a book to favorite list', async () => {
+        await factory.create('User', { ...credentials });
+        const authenticated = await api.post('/api/v1/auth').send(credentials);
+
+        const book = <IFakeBook>await factory.create('Book');
+
+        const { body, status } = await api
+            .post(`/api/v1/user/favorite-book/${book._id}`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(status).toBe(200);
+
+        expect(body.user.favorites.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('should not be able to user add a book to favorite list if book doesnt exists', async () => {
+        await factory.create('User', { ...credentials, role: Role.ADMIN });
+        const authenticated = await api.post('/api/v1/auth').send(credentials);
+
+        const { _id: bookId } = <IFakeBook>await factory.create('Book');
+
+        await api
+            .delete(`/api/v1/book/${bookId}`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        const { body, status } = await api
+            .post(`/api/v1/user/favorite-book/${bookId}`)
+            .set('Authorization', `Bearer ${authenticated.body.token}`);
+
+        expect(status).toBe(404);
+        expect(body.message).toBe('Livro não existe.');
     });
 });

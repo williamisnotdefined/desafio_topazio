@@ -6,7 +6,7 @@ const viewBookService = async (id: string): Promise<IBook> => {
     const book = await Book.findById(id);
 
     if (!book) {
-        throw new AppError('Usuário não existe.');
+        throw new AppError('Livro não existe.', 404);
     }
 
     return book;

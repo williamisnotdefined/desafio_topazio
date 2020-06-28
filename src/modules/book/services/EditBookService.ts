@@ -3,20 +3,20 @@ import AppError from '@shared/errors/AppError';
 import Book, { IBook } from '../schema/BookSchema';
 import IEditBookDTO from '@modules/book/dtos/IEditBookDTO';
 
-const editUserService = async (bookData: IEditBookDTO): Promise<IBook> => {
+const editBookService = async (bookData: IEditBookDTO): Promise<IBook> => {
     const { id, title, isbn, category, year } = bookData;
 
-    const user = await Book.findByIdAndUpdate(
+    const book = await Book.findByIdAndUpdate(
         id,
         { title, isbn, category, year },
         { new: true }
     );
 
-    if (!user) {
+    if (!book) {
         throw new AppError('Livro não existe.', 404);
     }
 
-    return user;
+    return book;
 };
 
-export default editUserService;
+export default editBookService;

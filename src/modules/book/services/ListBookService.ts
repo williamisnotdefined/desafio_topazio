@@ -11,7 +11,7 @@ interface PaginationQuery {
     role?: number;
 }
 
-const listUserServices = async (
+const listBookService = async (
     filters: IListBookDTO
 ): Promise<PaginateResult<IBook>> => {
     const { title, isbn, category, year, page, limit } = filters;
@@ -37,4 +37,4 @@ const listUserServices = async (
     return books;
 };
 
-export default listUserServices;
+export default listBookService;

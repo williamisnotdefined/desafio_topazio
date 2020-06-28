@@ -16,8 +16,8 @@ factory.define('Book', Book, {
     title: faker.name.findName(),
     isbn: String(faker.random.number({ min: 1000000000, max: 9000000000 })),
     category: faker.random.word(),
-    year: faker.random.number({ min: 1950, max: 2020 }),
-    cover: faker.image.imageUrl()
+    year: faker.random.number({ min: 1950, max: 2020 })
+    // cover: faker.image.imageUrl()
 });
 
 export default factory;
