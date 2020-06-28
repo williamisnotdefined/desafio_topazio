@@ -1,16 +1,17 @@
-## 🚀 Tecnologias utilizadas
+# Desafio Topázio
+### 🚀 Tecnologias utilizadas
 - [Node.js](https://nodejs.org/en/)
 - [Express](http://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
 - [Jest](https://jestjs.io/docs/en/expect)
 
 
-## 📦 O que eu preciso instalar, para rodar o projeto?
+### 📦 O que eu preciso instalar, para rodar o projeto?
 - [Node.js](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Yarn](https://classic.yarnpkg.com/lang/en/)
 
-## ⬇️ Baixando e executando o projeto
+### ⬇️ Baixando, instalando, executando e testando
 ```bash
   # Clonar o repositório
   git clone https://github.com/wozzp/desafio_topazio.git
@@ -24,7 +25,11 @@
   # Executar os testes do projeto
   yarn test
 ```
-## 🔖 Sumário
+### 🌎 Breve explicação sobre a estrutura
+- **`Testes`**: O projeto está com 100% de coverage, para ver o relatório de coverage basta executar os testes e abrir o arquivo src/__tests __/coverage/lcov-report/index.html
+- **`modules`**: Os modulos (user, book) do projeto foram desenvolvidos com base em DDD(Domain Driven Design)
+- **`fluxo das requisições`**: Routes > Controller > Services. As rotas devem direcionar a requisição a um Controller, onde ele trata os dados da requisição e envia para um Service, que será responsável por realizar alguma tarefa e devolver para o controller os dados necessários. (Single Responsibility Principle)
+
 ## 🏷️ Sobre
 
 
