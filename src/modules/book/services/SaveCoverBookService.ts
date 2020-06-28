@@ -1,4 +1,4 @@
-import deleteTmpFile from '@utils/deleteTpmFile';
+import deleteTmpFile from '@utils/deleteTmpFile';
 
 import AppError from '@shared/errors/AppError';
 
