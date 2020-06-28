@@ -29,49 +29,33 @@
 - **`Testes`**: O projeto está com 100% de coverage, para ver o relatório de coverage basta executar os testes e abrir o arquivo src/__tests __/coverage/lcov-report/index.html
 - **`modules`**: Os modulos (user, book) do projeto foram desenvolvidos com base em DDD(Domain Driven Design)
 - **`fluxo das requisições`**: Routes > Controller > Services. As rotas devem direcionar a requisição a um Controller, onde ele trata os dados da requisição e envia para um Service, que será responsável por realizar alguma tarefa e devolver para o controller os dados necessários. (Single Responsibility Principle)
+- **`API`**: A api está preparada para versionamento e conta atualmente com o prefixo "/api/v1"
 
-## 🏷️ Sobre
+## 🏷 ️Funcionalidades
+```
+(TL;DR)
+Dentro do projeto foi adicionado um arquivo exportado do insomnia, você pode importar para facilitar nos testes :D
+```
 
+### Livros
+- **`Criação - POST /book`**: Essa rota deve receber um título, isbn, categoria e ano para ser possível criar um livro. Além disso é necessário estar logado como um usuário com permissão de administrador.
+ - **`Listagem - GET /book`**: Essa rota pode receber por queryString um título, isbn, categoria e ano para a filtragem dos livros. Também é possível passar os parametros page e limit, afim de modificar a paginação. Não é necessário estar autenticado para receber o retorno desta rota.
+ - **`Ver um livro - GET /book/:id`**: Essa rota espera por parametro o ID de um livro, não é necessário estar autenticado para receber o retorno desta rota.
+ - **`Deletar - DELETE /book/:id`**: Essa rota espera por parametro o ID de um livro, é necessário estar autenticado com usuário com privilégio de administrador.
+ - **`Editar - PUT /book/:id`**: Esta rota espera por parametro o ID de um livro e o body da requisição deve conter título, isbn, categoria e ano. É necessário estar autenticado com um usuário com privilégio de administrador.
+ - **`Upload de Capa - POST /book/save-cover/:id`**:Esta rota espera por parametro o ID de um livro e deve receber uma imagem para ser salva como capa do livro. Apenas um usuário com privilégio de administrador poderá efetuar essa ação.
 
+### Usuários
+- **`Criação - POST /user`**: Esta rota espera receber um nome, idade, telefone, email, password e permissão (usuário ou administrador). Não precisa estar autenticado. Para maior facilidade, fiz essa rota receber a Role (que não seria uma boa prática), o ideal seria que um usuário administrador fosse criado por outro usuário administrador e que o primeiro usuário adm já estivesse populado na base, dessa forma não passariamos a role.
+- **`Listagem - GET /user`**: Esta rota espera todos os dados de um usuário por queryString (nome, idade, phone, role) assim como page e limit para alterar a paginação. Está rota exige privilégios de administrador.
+- **`Ver um usuário - GET /user/:id`**: Está rota espera um ID de um usuário por parametro e pode ser acessada pelo próprio usuário (dono do ID) ou por um usuário com privilégios de administrador, demais usuários autenticados não terão acesso.
+- **`Editar - PUT /user/:id`**: Está rota espera um ID de um usuário por parametro e o body da requisição deve conter nome, idade, telefone e email. Pode ser acessada pelo próprio usuário (dono do ID) ou por um usuário com privilégios de administrador.
+- - **`Deletar - DELETE /user/:id`**: Está rota espera um ID de um usuário por parametro e pode ser acessada pelo próprio usuário (dono do ID) ou por um usuário com privilégios de administrador.
+- **`Favoritar livro - POST /user/favorite-book/:id`**: Está rota espera um ID de um livro por parametro e pode ser acessada apenas pelo usuário que está autenticado. Um administrador não conseguirá adicionar favoritos para outro usuário.
 
-melhor visualização vscode com extensão Material Icon Theme
-modulos baseado em DDD (Domain Driven Design)
+### Auth
+- **`Logar - POST /auth`**: Está rota espera um email e senha, ela retornará um token JWT e o usuário. Informações sensíveis do usuário (como senha) nunca são passadas por payload.
 
------- final ------
-- jest / testes / coverage
-- exportar insomnia
-
-
------ testes -----
-- não esquecer de verificar status code retornado
-
--------------------- readme
-Readme explicando:
-- melhor visualização vscode com extensão Material Icon Theme
-- mongo precisa estar instalado
-
-- o uso do DDD
-- single responsability principle
-
-
------
-Funcionalidades Livros
-    - Criar (Admin) - OK
-    - Listar todos (Não precisa estar logado) - OK
-    - Ver um livro (Não precisa estar logado) - OK
-    - Excluir (Admin) - OK
-    - Editar (Admin) - OK
-    - Adicionar Capa (Admin) - OK
-
-
-Funcionalidades User
-    - Criar Usuário (o usuário pode ser criado com a role de admin ou user e qualquer um pode criar) - OK
-    - Auth - OK
-    - Listar os usuários da biblioteca (Admin) - OK
-    - Retornar dados de um usuário (User que está logado pode ver os seus próprios dados / Admin pode editar qualquer um) - OK
-    - Editar (Admin / Own User) - OK
-    - Excluir (Admin / Own User) - OK
-    - Salvar livro na lista de favoritos de um usuário (User) - OK
 
 
 
