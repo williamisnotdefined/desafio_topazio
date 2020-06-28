@@ -13,6 +13,17 @@ const saveCoverBookService = async (
     const book = await Book.findById(id);
 
     if (!book) {
+        const bookCoverFilePath = path.join(
+            uploadConfig.directory,
+            coverFilename
+        );
+
+        const coverFileExists = await fs.promises.stat(bookCoverFilePath);
+
+        if (coverFileExists) {
+            await fs.promises.unlink(bookCoverFilePath);
+        }
+
         throw new AppError('Livro não existe.', 404);
     }
 
