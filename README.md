@@ -31,11 +31,8 @@
 - **`fluxo das requisições`**: Routes > Controller > Services. As rotas devem direcionar a requisição a um Controller, onde ele trata os dados da requisição e envia para um Service, que será responsável por realizar alguma tarefa e devolver para o controller os dados necessários. (Single Responsibility Principle)
 - **`API`**: A api está preparada para versionamento e conta atualmente com o prefixo "/api/v1"
 
-## 🏷 ️Funcionalidades
-```
-(TL;DR)
-Dentro do projeto foi adicionado um arquivo exportado do insomnia, você pode importar para facilitar nos testes :D
-```
+## 📌 Rotas da API
+⚠️ **Atenção! O _token_ necessário para realizar grande parte das requisições é gerado a partir da rota **`POST /auth`** e deve ser enviado via _Bearer_ nas referidas rotas. Dentro do projeto foi adicionado um arquivo exportado do insomnia, você pode importar para facilitar nos testes :D**
 
 ### Livros
 
@@ -71,6 +68,6 @@ Dentro do projeto foi adicionado um arquivo exportado do insomnia, você pode im
 
 
 
-
+## Melhorias
 
 
