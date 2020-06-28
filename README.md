@@ -5,7 +5,6 @@
 - [MongoDB](https://www.mongodb.com/)
 - [Jest](https://jestjs.io/docs/en/expect)
 
-
 ### 📦 O que eu preciso instalar, para rodar o projeto?
 - [Node.js](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
@@ -66,8 +65,9 @@
 
 - **`Logar - POST /auth`**: Está rota espera um email e senha, ela retornará um token JWT e o usuário. Informações sensíveis do usuário (como senha) nunca são passadas por payload.
 
+## 🌐 Melhorias / Auto críticas
 
+Existe muito espaço para melhoria nesse teste, por exemplo, utiizaçaõ de docker, implementação de logs, upload para s3 ao invés de disco local, etc.
 
-## Melhorias
-
+🚀🚀🚀
 
