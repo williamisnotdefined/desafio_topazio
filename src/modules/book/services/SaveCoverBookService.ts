@@ -1,5 +1,4 @@
 import deleteTmpFile from '@utils/deleteTmpFile';
-
 import AppError from '@shared/errors/AppError';
 
 import Book, { IBook } from '../schema/BookSchema';

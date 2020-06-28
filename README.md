@@ -31,7 +31,7 @@
 - **`API`**: A api está preparada para versionamento e conta atualmente com o prefixo "/api/v1"
 
 ## 📌 Rotas da API
-⚠️ **Atenção! O _token_ necessário para realizar grande parte das requisições é gerado a partir da rota **`POST /auth`** e deve ser enviado via _Bearer_ nas referidas rotas. Dentro do projeto foi adicionado um arquivo exportado do insomnia, você pode importar para facilitar nos testes :D**
+⚠️ **Atenção! O _token_ necessário para realizar grande parte das requisições é gerado a partir da rota **`POST /auth`** e deve ser enviado via _Bearer_ nas referidas rotas. Na pasta raiz do projeto foi adicionado um arquivo exportado do insomnia, você pode importar para facilitar nos testes, o nome do arquivo é 'insomnia_exported.json' :D**
 
 ### Livros
 
