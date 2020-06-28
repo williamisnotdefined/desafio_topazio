@@ -4,8 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "start": "ts-node-dev ./src/index.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules ./src/index.ts",
     "test": "NODE_ENV=test jest --watchAll --verbose --detectOpenHandles"
   },
