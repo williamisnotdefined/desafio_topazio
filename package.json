@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules ./src/index.ts",
-    "test": "cross-env NODE_ENV=test jest --watchAll --verbose --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest --watchAll --verbose --detectOpenHandles",
+    "prettier": "prettier --write \"**/*.ts\""
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
